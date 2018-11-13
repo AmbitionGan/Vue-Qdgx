@@ -85,7 +85,7 @@ export default {
   },
   // post请求
   post (url, param, callback) {
-    return new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => {
         Axios({
         method: 'post',
         url,

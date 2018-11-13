@@ -33,10 +33,23 @@ export default {
   created() {
     Req.get('/api/banner', null, res => {
       this.$data.bannerData = res.data.articles
+        this.$nextTick(() => {
+          // DOM更新了之前已经初始化完了
+          // swiper重新初始化
+          /* eslint-disable no-new */
+          new Swiper('.swiper-container', {
+            autoplay: 3000,
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            // prevButton: '.swiper-button-prev',
+            // nextButton: '.swiper-button-next'
+          })
+        })
     })
   },
   mounted () { // 数据挂载结束
-    var mySwiper = new Swiper('.swiper-container', {
+    // 初始化swiper
+    let mySwiper = new Swiper('.swiper-container', {
         autoplay: 3000,
         pagination: '.swiper-pagination',
         paginationClickable: true,
