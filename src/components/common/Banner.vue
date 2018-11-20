@@ -21,54 +21,56 @@
 <script>
 import 'swiper/dist/css/swiper.min.css'
 import Swiper from 'swiper'
-import Req from '../../api/http.js'
+import API from '@/api/api'
 
 export default {
   name: 'Banner',
   data () {
-    return{
+    return {
       bannerData: ''
     }
   },
-  created() {
-    Req.get('/api/banner', null, res => {
+  created () {
+    API.BannerList(null).then(res => {
       this.$data.bannerData = res.data.articles
-        this.$nextTick(() => {
-          // DOM更新了之前已经初始化完了
-          // swiper重新初始化
-          /* eslint-disable no-new */
-          new Swiper('.swiper-container', {
-            autoplay: 3000,
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            // prevButton: '.swiper-button-prev',
-            // nextButton: '.swiper-button-next'
-          })
-        })
+      this.$nextTick(() => {
+        // DOM更新了之前已经初始化完了
+        // swiper重新初始化
+        /* eslint-disable no-new */
+        new Swiper('.swiper-container', {
+          autoplay: 3000,
+          pagination: '.swiper-pagination',
+          paginationClickable: true
+          // prevButton: '.swiper-button-prev',
+          // nextButton: '.swiper-button-next'
+        })
+      })
     })
   },
-  mounted () { // 数据挂载结束
+  mounted () {
+    // 数据挂载结束
     // 初始化swiper
-    let mySwiper = new Swiper('.swiper-container', {
-        autoplay: 3000,
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        // prevButton: '.swiper-button-prev',
-        // nextButton: '.swiper-button-next'
-      })
+    new Swiper('.swiper-container', {
+      autoplay: 3000,
+      pagination: '.swiper-pagination',
+      paginationClickable: true
+      // prevButton: '.swiper-button-prev',
+      // nextButton: '.swiper-button-next'
+    })
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-.swiper-button-prev,.swiper-button-next{
+.swiper-button-prev,
+.swiper-button-next {
   display: none;
 }
-.swiper-slide{
+.swiper-slide {
   position: relative;
 }
-.swiper-slide .content{
+.swiper-slide .content {
   position: absolute;
   z-index: 2;
   bottom: 20%;
@@ -77,7 +79,7 @@ export default {
   font-size: 48px;
   width: 30%;
 }
-.swiper-slide img{
+.swiper-slide img {
   max-width: 100%;
 }
 </style>
