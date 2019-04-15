@@ -1,0 +1,57 @@
+@mt: 20px;
+@images: '../../assets/images';
+.mg(@mt, @mr, @mb, @ml) {
+  margin: @mt @mr @mb @ml;
+}
+.pd(@pt, @pr, @pb, @pl) {
+  padding: @pt @pr @pb @pl;
+}
+.bgImg(@imgSrc){
+  background: url("@{images}/@{imgSrc}") no-repeat center center;
+  background-size: cover;
+}
+.posAndcenter(@top, @left, @right, @bottom, @tslX, @tslY){
+  position: absolute;
+  top: @top;
+  left: @left;
+  right: @right;
+  bottom: @bottom;
+  transform: translate(@tslX, @tslY);
+  -webkit-transform: translate(@tslX, @tslY);
+}
+
+.font-size(@size) when (@size > 23px){
+  font-size: @size;
+  @media only screen and (max-width: 1679px) {
+    font-size: @size*0.87;
+  }
+  @media only screen and (max-width: 1520px) {
+    font-size: @size*0.79;
+  }
+  @media only screen and (max-width: 1279px) {
+    font-size: @size*0.66;
+  }
+  @media only screen and (max-width: 1023px) {
+    font-size: @size*0.53;
+  }
+  @media only screen and (max-width: 767px) {
+    font-size: @size*0.5;
+  }
+}
+
+.font-size(@size) when (@size < 24px) and (@size > 17px){
+  font-size: @size;
+  @media only screen and (max-width: 1679px) {
+    font-size: @size*0.87;
+  }
+  @media only screen and (max-width: 1520px) {
+    font-size: @size*0.79;
+  }
+  @media only screen and (max-width: 1279px) {
+    font-size: @size*0.66;
+  }
+}
+
+.font-size(@size) when (@size < 18px){
+  font-size: @size;
+}
